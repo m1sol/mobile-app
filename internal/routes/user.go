@@ -1,12 +1,16 @@
 package routes
 
-import "github.com/labstack/echo/v4"
+import (
+	"github.com/labstack/echo/v4"
+	"mobile-auth/internal/handlers"
+	"mobile-auth/internal/repositories"
+)
 
 func User(e *echo.Echo) {
-	//repo := repository.NewDefaultRepository[entities.Report]()
-	//handler := handlers.NewReportHandler(repo, []string{"Branches"})
+	repo := repositories.NewUserRepository()
+	handler := handlers.NewUserHandler(*repo)
 
-	//e.POST("/register", handler.Create, middleware.RequireRole("admin"))
+	e.POST("/register", handler.Register)
 	//e.POST("/auth", handler.Create, middleware.RequireRole("admin"))
 	//e.POST("/activate", handler.Create, middleware.RequireRole("admin"))
 	//e.POST("/confirm/:token", handler.Create, middleware.RequireRole("admin"))

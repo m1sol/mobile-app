@@ -7,6 +7,7 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	"log"
 	"mobile-auth/internal/db"
+	"mobile-auth/internal/routes"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -41,6 +42,8 @@ func main() {
 	})
 
 	db.ConnectDatabase()
+
+	routes.User(e)
 
 	e.Logger.Fatal(e.Start(os.Getenv("ECHO_HOST")))
 
